@@ -17,7 +17,7 @@ This skills framework turns the course's knowledge into **repeatable, agent-exec
 ## Installation
 
 ```bash
-npx skills add atpaawej/sales-skills --all
+npx skills add atpaawej/sales-skills 
 ```
 
 The CLI auto-detects your agent (Claude Code, Codex, Cursor, Cline, and 70+ more) and prompts you to pick which skills to install.
