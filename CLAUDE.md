@@ -1,6 +1,6 @@
 # CLAUDE.md — Sales Skills Workspace
 
-Sales skills are in `.claude/skills/` or `skills/sales/`. They use a workspace model — each skill reads from and writes to `.sales/` in the founder's project directory.
+Sales skills are in `skills/sales/`. They use a workspace model — each skill reads from and writes to `.sales/` in the founder's project directory.
 
 ## Available Skills
 
@@ -19,10 +19,7 @@ All skills are user-invoked (slash-command only):
 - `/pricing-advisor` — design pricing strategy
 
 ### Outreach
-- `/cold-email-writer` — generate cold email variations
-- `/linkedin-dm-writer` — generate LinkedIn DM scripts
-- `/follow-up-sequencer` — build follow-up sequences
-- `/call-prepper` — prepare for sales calls
+- `/outreach` — one hub for cold emails, LinkedIn DMs, follow-ups, and call prep
 - `/objection-roleplay` — interactive objection practice
 
 ### Content
@@ -38,3 +35,5 @@ All skills are user-invoked (slash-command only):
 2. Skills read/write `.sales/` files in the founder's current working directory
 3. Skills are user-invoked only (`disable-model-invocation: true`)
 4. The workspace is the source of truth — skills compose through shared files
+5. Skills are self-contained — no shared engine or abstraction layer
+6. The outreach hub uses reference files (`email-dm.md`, `call-prep.md`, etc.) loaded by the main `SKILL.md` on demand
