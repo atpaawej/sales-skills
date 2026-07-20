@@ -4,7 +4,7 @@
 
 A framework of composable agent skills for **pre-revenue technical founders** who have a product and need customers. Each skill does one thing. They work together. And they store everything in a workspace so you never start from zero.
 
-[![skills.sh](https://skills.sh/b/atpaawej/sales-builders-skills)](https://skills.sh/atpaawej/sales-builders-skills)
+[![skills.sh](https://skills.sh/b/atpaawej/sales-skills)](https://skills.sh/atpaawej/sales-skills)
 
 Built from the [Sales for Builders](https://salesforbuilders.aawej.in/) course — psychology fundamentals, practical playbooks, and frameworks that actually work in 2026.
 
@@ -19,7 +19,7 @@ This skills framework turns the course's knowledge into **repeatable, agent-exec
 Install all skills with one command:
 
 ```bash
-npx skills add atpaawej/sales-builders-skills
+npx skills add atpaawej/sales-skills
 ```
 
 The CLI auto-detects your agents (Claude Code, Codex, Cursor, Cline, and 70+ more) and prompts you to pick which skills to install.
@@ -28,22 +28,22 @@ The CLI auto-detects your agents (Claude Code, Codex, Cursor, Cline, and 70+ mor
 
 ```bash
 # Install to all agents without prompts
-npx skills add atpaawej/sales-builders-skills --all
+npx skills add atpaawej/sales-skills --all
 
 # Install only specific skills
-npx skills add atpaawej/sales-builders-skills --skill icp-definer --skill cold-email-writer
+npx skills add atpaawej/sales-skills --skill icp-definer --skill cold-email-writer
 
 # Install globally (available in every project)
-npx skills add atpaawej/sales-builders-skills -g
+npx skills add atpaawej/sales-skills -g
 
 # Install to specific agents only
-npx skills add atpaawej/sales-builders-skills -a claude-code -a cursor
+npx skills add atpaawej/sales-skills -a claude-code -a cursor
 
 # List available skills without installing
-npx skills add atpaawej/sales-builders-skills --list
+npx skills add atpaawej/sales-skills --list
 
 # Use one skill without installing
-npx skills use atpaawej/sales-builders-skills@icp-definer | claude
+npx skills use atpaawej/sales-skills@icp-definer | claude
 ```
 
 ### After Installation
@@ -132,7 +132,7 @@ Every skill reads from and writes to a `.sales/` directory in your project folde
 
 ```bash
 # 1. Install the skills
-npx skills add atpaawej/sales-builders-skills --all
+npx skills add atpaawej/sales-skills --all
 
 # 2. Create a folder for your product
 mkdir my-product-sales
