@@ -1,6 +1,6 @@
 ---
 name: objection-roleplay
-description: Interactive roleplay — practice handling objections with the agent playing a skeptical prospect.
+description: Interactive roleplay — I play a skeptical prospect, you practice handling objections. Feedback after every round. No file I/O, just practice.
 disable-model-invocation: true
 ---
 
@@ -8,52 +8,56 @@ disable-model-invocation: true
 
 The gap between knowing what to say and saying it under pressure is wide. This skill closes it.
 
-The agent plays a skeptical prospect based on your ICP. You practice handling objections in real time. After each round, you get feedback and a stronger response to try.
+I play a skeptical prospect based on your ICP. You handle the objection. After each round, I give feedback and a stronger response. Then you try again.
 
-No file writing — this is a conversation drill. If useful lines emerge, you can note them down.
+No file writing — this is a conversation drill. If strong lines emerge, note them down for `.sales/objection-scripts.md`.
+
+---
 
 ## Prerequisites
 
-- `.sales/context.md`, `.sales/value-proposition.md`, `.sales/competitors.md` exist.
+`.sales/context.md`, `.sales/value-proposition.md`, and `.sales/competitors.md` should exist so the roleplay is grounded in your real positioning.
+
+---
 
 ## Flow
 
 ### 1. Set the scene
 
-Read `.sales/context.md`, `.sales/value-proposition.md`, `.sales/competitors.md` using `_engine` procedures (but don't write anything — this is a practice session).
+Read `.sales/context.md`, `.sales/value-proposition.md`, `.sales/competitors.md` for context.
 
-Ask the founder:
+Ask:
 - "What objection is giving you the most trouble right now?"
-- "Who is the prospect you're practicing for? (specific or generic ICP persona)"
-- "What's your goal for this session? (defuse, keep conversation going, close for next step)"
+- "Who is the prospect you're practicing for? (specific or your ICP persona)"
+- "What's your goal? (defuse, keep conversation going, close for next step)"
 
 ### 2. Brief the founder
 
-"Here's the framework we'll use:
-
-**Feel-Felt-Found:**
-1. **Feel** — 'I understand how you feel...' (validate)
-2. **Felt** — 'Other customers have felt the same way...' (normalize)
-3. **Found** — 'What they found was...' (evidence)
-
-**Rules:**
-- Never argue — it triggers defensiveness
-- Acknowledge before reframing
-- If the objection is valid, say so — trust beats winning the argument
-- If stuck, ask a question — buying time is better than filling silence with weakness"
+> "Here's the framework we'll use:
+>
+> **Feel-Felt-Found:**
+> 1. **Feel** — 'I understand how you feel...' (validate)
+> 2. **Felt** — 'Other customers have felt the same way...' (normalize)
+> 3. **Found** — 'What they found was...' (evidence)
+>
+> **Rules:**
+> - Never argue — it triggers defensiveness
+> - Acknowledge before reframing
+> - If the objection is valid, say so — trust beats winning
+> - If stuck, ask a question — buying time is better than filling silence"
 
 ### 3. Run the roleplay
 
-I'll play the prospect. I'll be realistic but not hostile. I'll get harder if you're handling it well.
+I'll play the prospect. Realistic but not hostile. I'll get harder if you're handling it well.
 
-**Example flow for "too expensive":**
+Example flow:
 
 ```
 Me (as prospect): "Your pricing is too high for what it does."
 
 You: [respond]
 
-Me: "I hear you, but we've been burned by tools that promised results and didn't deliver. Why would this be different?"
+Me: "I hear you, but we've been burned by tools that promised results..."
 
 You: [respond]
 
@@ -62,45 +66,26 @@ Me: "I need to think about it and talk to my team."
 You: [respond]
 ```
 
-**Example flow for "we're happy with what we have":**
-
-```
-Me: "We already use [competitor/tool] and it works fine."
-
-You: [respond]
-
-Me: "Switching costs are too high. We'd lose time and momentum."
-
-You: [respond]
-
-Me: "Maybe in 6 months, but not right now."
-
-You: [respond]
-```
-
 ### 4. Debrief after each round
 
 After 3-5 exchanges, pause:
-
 - "What worked well there?"
 - "Where did you feel stuck?"
 - "Here's a stronger version: [improved response]"
-- "Notice the Feel-Felt-Found pattern — did you use all three steps?"
+- "Did you use all three Feel-Felt-Found steps?"
 
 Let them try the same objection again with the stronger approach.
 
 ### 5. Cycle through objections
 
-Practice as many as they have energy for:
-
 | Objection | Trap to avoid | Playbook |
 |---|---|---|
 | "Too expensive" | Defending price or discounting | Value reframe → ROI |
-| "Need to think about it" | Going silent or saying "sure, let me know" | "What specifically?" → Cost of inaction |
+| "Need to think about it" | Going silent | "What specifically?" → Cost of inaction |
 | "Happy with current solution" | Trashing competitor | Acknowledge → "What would you improve?" |
 | "Not the right time" | Accepting and walking away | "What needs to change?" → Set a trigger |
-| "Using Competitor X" | Feature comparison war | Differentiate on unique capability |
-| "Send me some info" | Sending a deck and hoping | "Happy to — what specifically?" |
+| "Using Competitor X" | Feature comparison | Differentiate on unique capability |
+| "Send me some info" | Sending a deck | "Happy to — what specifically?" |
 
 ### 6. Save the strongest lines
 
@@ -113,12 +98,16 @@ After the session, write down what worked:
 <objection> → <the line that worked>
 ```
 
-Write to `.sales/objection-scripts.md` using `_engine` write procedures.
+Write to `.sales/objection-scripts.md`. If the file already exists, append to it.
 
-### 7. Final note
+### 7. Close
 
-"You've practiced [X] objections today. The words in your head are now in your mouth. When a real prospect raises these objections, you'll handle them more naturally because you've already done it. The key is: feel before reframe, always."
+> "You've practiced **[X]** objections today. The words in your head are now in your mouth. When a real prospect raises these, you'll handle them more naturally.
+>
+> Run `/outreach` to prep for your next real conversation."
+
+---
 
 ## Completion criterion
 
-Founder has practiced at least 3 objections, received feedback, and written down the strongest lines for real use.
+Founder has practiced at least 3 objections, received feedback, and written down the strongest lines.
