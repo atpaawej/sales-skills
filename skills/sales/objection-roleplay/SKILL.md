@@ -1,106 +1,124 @@
 ---
 name: objection-roleplay
-description: Interactive objection handling roleplay. The agent plays the prospect and the founder practices their responses.
+description: Interactive roleplay — practice handling objections with the agent playing a skeptical prospect.
 disable-model-invocation: true
 ---
 
 # Objection Roleplay
 
-Interactive roleplay session where the agent plays a skeptical prospect and the founder practices handling objections. Based on the Feel-Felt-Found method and Chris Voss's tactical empathy.
+The gap between knowing what to say and saying it under pressure is wide. This skill closes it.
+
+The agent plays a skeptical prospect based on your ICP. You practice handling objections in real time. After each round, you get feedback and a stronger response to try.
+
+No file writing — this is a conversation drill. If useful lines emerge, you can note them down.
 
 ## Prerequisites
 
-- `.sales/context.md` exists
-- `.sales/value-proposition.md` exists
+- `.sales/context.md`, `.sales/value-proposition.md`, `.sales/competitors.md` exist.
 
 ## Flow
 
-### 1. Set up the scenario
+### 1. Set the scene
+
+Read `.sales/context.md`, `.sales/value-proposition.md`, `.sales/competitors.md` using `_engine` procedures (but don't write anything — this is a practice session).
 
 Ask the founder:
-- "What type of prospect are you practicing with? (match your ICP)"
-- "What's the specific objection you want to practice? (price, time, competition, need to think, etc.)"
-- "How much context should I have? (just ICP, or a specific prospect you're worried about)"
-- "What's your goal? (defuse the objection, keep the conversation going, ask for the next step)"
+- "What objection is giving you the most trouble right now?"
+- "Who is the prospect you're practicing for? (specific or generic ICP persona)"
+- "What's your goal for this session? (defuse, keep conversation going, close for next step)"
 
-### 2. Brief the founder on the framework
+### 2. Brief the founder
 
-"Before we start, here's the framework we'll practice with:
+"Here's the framework we'll use:
 
 **Feel-Felt-Found:**
-1. **Feel** — 'I understand how you feel...'
-2. **Felt** — 'Other customers have felt the same way...'
-3. **Found** — 'What they found was...'
+1. **Feel** — 'I understand how you feel...' (validate)
+2. **Felt** — 'Other customers have felt the same way...' (normalize)
+3. **Found** — 'What they found was...' (evidence)
 
-**Key rules:**
+**Rules:**
 - Never argue — it triggers defensiveness
 - Acknowledge before reframing
-- If the objection is valid, say so — trust is more important than winning"
+- If the objection is valid, say so — trust beats winning the argument
+- If stuck, ask a question — buying time is better than filling silence with weakness"
 
 ### 3. Run the roleplay
 
-You play the prospect. Use a realistic persona based on the ICP.
+I'll play the prospect. I'll be realistic but not hostile. I'll get harder if you're handling it well.
 
-Example for a pricing objection:
+**Example flow for "too expensive":**
+
 ```
-You (as prospect): "It's too expensive. We don't have budget for this."
+Me (as prospect): "Your pricing is too high for what it does."
 
-[Founder responds]
+You: [respond]
 
-You: "I hear you saying the value isn't clear yet. But we've been burned by tools before. Why would this be different?"
+Me: "I hear you, but we've been burned by tools that promised results and didn't deliver. Why would this be different?"
 
-[Founder responds]
+You: [respond]
 
-You: "I'd need to think about it and talk to my team."
+Me: "I need to think about it and talk to my team."
+
+You: [respond]
 ```
 
-**Your job as the roleplay partner:**
-- Be realistic but not hostile
-- Push back enough to be useful
-- Get progressively harder if the founder is handling it well
-- Match the objection to real patterns from the course
+**Example flow for "we're happy with what we have":**
+
+```
+Me: "We already use [competitor/tool] and it works fine."
+
+You: [respond]
+
+Me: "Switching costs are too high. We'd lose time and momentum."
+
+You: [respond]
+
+Me: "Maybe in 6 months, but not right now."
+
+You: [respond]
+```
 
 ### 4. Debrief after each round
 
-After 3-5 exchanges:
-- "What worked well in that response?"
-- "Where did you get stuck?"
+After 3-5 exchanges, pause:
+
+- "What worked well there?"
+- "Where did you feel stuck?"
 - "Here's a stronger version: [improved response]"
-- "Want to try that objection again with the stronger approach?"
+- "Notice the Feel-Felt-Found pattern — did you use all three steps?"
 
-### 5. Cycle through common objections
+Let them try the same objection again with the stronger approach.
 
-Practice each major objection:
+### 5. Cycle through objections
 
-| Objection | Framework to use |
-|---|---|
-| "It's too expensive" | Value reframe → ROI calculation |
-| "We need to think about it" | "What specifically?" → Cost of inaction |
-| "Happy with current solution" | "What would you improve?" → Find the gap |
-| "Not the right time" | "What needs to change for it to be the right time?" |
-| "We use Competitor X" | Differentiate on unique capability |
-| "Send me some information" | "I'd love to — what specifically are you evaluating?" |
+Practice as many as they have energy for:
 
-### 6. Save notes
+| Objection | Trap to avoid | Playbook |
+|---|---|---|
+| "Too expensive" | Defending price or discounting | Value reframe → ROI |
+| "Need to think about it" | Going silent or saying "sure, let me know" | "What specifically?" → Cost of inaction |
+| "Happy with current solution" | Trashing competitor | Acknowledge → "What would you improve?" |
+| "Not the right time" | Accepting and walking away | "What needs to change?" → Set a trigger |
+| "Using Competitor X" | Feature comparison war | Differentiate on unique capability |
+| "Send me some info" | Sending a deck and hoping | "Happy to — what specifically?" |
 
-After the session, save key learnings:
+### 6. Save the strongest lines
 
-```markdown
-# Objection Roleplay Notes
+After the session, write down what worked:
 
-Date: <date>
-Focus: <objection type>
-
-## What Worked
-<Responses that landed well>
-
-## What To Improve
-<Responses that didn't work>
-
-## Strongest Lines
-<Frameworks or phrases to use in real calls>
 ```
+## Strongest Responses From This Session
+
+<objection> → <the line that worked>
+<objection> → <the line that worked>
+```
+
+Write to `.sales/objection-scripts.md` using `_engine` write procedures.
+
+### 7. Final note
+
+"You've practiced [X] objections today. The words in your head are now in your mouth. When a real prospect raises these objections, you'll handle them more naturally because you've already done it. The key is: feel before reframe, always."
 
 ## Completion criterion
 
-Founder has practiced at least 3 objections, received feedback on their responses, and has written down the strongest lines they can use in real calls.
+Founder has practiced at least 3 objections, received feedback, and written down the strongest lines for real use.

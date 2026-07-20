@@ -1,104 +1,151 @@
 ---
 name: cold-email-writer
-description: Generate personalized cold email variations based on the ICP and value proposition. Uses the 4-sentence formula and P.A.I.N. framework.
+description: Generate cold email variations that get replies — research-backed, personalized to the ICP, built on the 4-sentence formula.
 disable-model-invocation: true
 ---
 
 # Cold Email Writer
 
-Generates cold email templates personalized to the founder's product and ICP. Based on the 4-sentence formula from the course and the P.A.I.N. framework.
+Most cold outreach fails because it's about the sender, not the receiver. "Hi, I'm John, my company does X, we're the best at Y, would you like a demo?" — delete.
+
+This skill writes emails that sound like one thoughtful human to another. Not templates — **variations tailored to your ICP's specific situation**, backed by research and psychological principles.
+
+Use `_engine` procedures for all workspace I/O.
 
 ## Prerequisites
 
-- `.sales/context.md` exists
-- `.sales/icp.md` exists
-- `.sales/value-proposition.md` exists
+- `.sales/context.md`, `.sales/icp.md`, and `.sales/value-proposition.md` exist.
 
 ## Flow
 
-### 1. Read workspace
+### 1. Read workspace and research
 
-Read `.sales/context.md`, `.sales/icp.md`, and `.sales/value-proposition.md`.
+Read `.sales/context.md`, `.sales/icp.md`, `.sales/value-proposition.md` using `_engine` procedures.
 
-### 2. Ask for context
+Then **research your ICP's world** using web search:
+- What are they talking about right now? (Twitter, LinkedIn, Reddit, blogs)
+- What's the #1 problem they're complaining about in their niche?
+- What recent news/trend is affecting them?
+- What language do they use when describing the pain? (their words, not yours)
 
-Ask the founder:
-- "What's your target prospect's name and company?" (if specific)
-- "Do you have a specific trigger event? (they posted something, launched a feature, got funding, etc.)"
-- "What channel are you sending through? (email, LinkedIn, Twitter/X DM)"
-- "What's your goal for this outreach? (book a call, get a reply, get a trial signup)"
+### 2. Present the research and calibrate
 
-If they want a *batch* of emails for cold outreach (no specific prospect), proceed with the generic template approach below.
+Share what you found:
 
-### 3. Apply the 4-Sentence Formula
+```
+I researched [ICP segment] to understand what's on their mind right now.
+Here's what I found:
 
-Every cold email follows this structure:
+- They're talking about: [topic 1], [topic 2]
+- The language they use: [specific phrases, words]
+- The mood: [frustrated? overwhelmed? curious?]
+```
 
-| Sentence | What it does | Example |
-|---|---|---|
-| 1. Who you are | One sentence, plain English | "I'm a solo developer building tools for fintech teams." |
-| 2. Why them | Specific to their situation | "I saw your post about PCI compliance headaches." |
-| 3. What you offer | Value, not features | "I built a tool that handles compliance checks in CI/CD so your team doesn't manually audit every deploy." |
-| 4. The ask | Low commitment | "Would you be open to a 5-minute call to see if this fits?" |
+Then ask:
 
-### 4. Check against P.A.I.N.
+- "Who specifically are you emailing? (name + company, or profile type)"
+- "What's the trigger for this outreach? (they posted something, launched a feature, got funding, or just cold)"
+- "What's your goal? (reply, call, trial signup)"
+- "Have you tried emailing this type of prospect before? What happened?"
 
-| Letter | Check |
-|---|---|
-| **P**ersonalized | Does it reference something specific to them? |
-| **A**udience-aware | Does it sound like you understand their world? |
-| **I**mmediate | Can they scan it in 5 seconds? |
-| **N**ext step | Is it clear what to do? |
+### 3. Build the 4-sentence email
 
-### 5. Generate options
+Every email follows this exact structure — no exceptions:
 
-Generate 3 distinct cold email variations:
+| # | Sentence | Purpose | Check |
+|---|---|---|---|
+| 1 | Who you are | Plain English intro | "I'm a solo developer building tools for fintech teams." |
+| 2 | Why them | Specific to their situation | Must reference something real about them |
+| 3 | What you offer | Value, not features | "I built a tool that handles compliance checks in CI/CD so your team doesn't manually audit every deploy." |
+| 4 | The ask | Lowest possible commitment | Reply? 5-min call? Link? |
 
-- **Option A: Curiosity hook** — "Quick question about [their specific situation]"
-- **Option B: Pain-first** — "Still dealing with [specific pain]?"
-- **Option C: Social proof** — "We helped [similar company] achieve [outcome]"
+### 4. Generate 3 distinct variations
 
-Also generate 3 subject line options with rationale.
+Each variation uses a different psychological hook:
 
-### 6. Write the sequence
+**Option A: Curiosity hook**
+- Subject: "Quick question about [their specific situation]"
+- Sentence 2 creates a gap they want to close
+- Sentence 4 asks a low-friction question
 
-Save to `.sales/outreach/sequence-01.md`:
+**Option B: Pain-first hook**
+- Subject: "Still dealing with [specific pain]?"
+- Sentence 2 names the pain in their language (from your research)
+- Sentence 4 offers a way out
+
+**Option C: Social proof hook**
+- Subject: "[Similar company/name reference]"
+- Sentence 2 references a similar situation or company
+- Sentence 4 implies "others like you found this useful"
+
+For each option, score it:
+
+| Check | Option A | Option B | Option C |
+|---|---|---|---|
+| **P**ersonalized — references something specific? | | | |
+| **A**udience-aware — sounds like you understand their world? | | | |
+| **I**mmediate — scannable in 5 seconds? | | | |
+| **N**ext step — clear what to do? | | | |
+
+### 5. Write the follow-up sequence
+
+Each email needs a follow-up strategy:
+
+```
+Email sent: Day 0
+Follow-up 1 (Day 3): New angle — "wanted to share [specific resource]"
+Follow-up 2 (Day 7): Social proof — "here's how [similar company] solved [problem]"
+Follow-up 3 (Day 14): Break-up — "I'll stop here, but door's always open"
+```
+
+Write the actual text for each follow-up.
+
+### 6. Write `.sales/outreach/sequence-01.md`
+
+Use `_engine` write procedures:
 
 ```markdown
 # Outreach Sequence 01: <Target Segment>
 
 Last updated: <date>
 
-## Email Variation A (Curiosity)
-**Subject:** <subject>
-**Body:**
-<4-sentence email>
+## Research Summary
+<What you found about the ICP's current situation>
 
-## Email Variation B (Pain-first)
+## Email Option A (Curiosity)
 **Subject:** <subject>
 **Body:**
-<4-sentence email>
+<4 sentences>
 
-## Email Variation C (Social Proof)
+## Email Option B (Pain-first)
 **Subject:** <subject>
 **Body:**
-<4-sentence email>
+<4 sentences>
+
+## Email Option C (Social Proof)
+**Subject:** <subject>
+**Body:**
+<4 sentences>
 
 ## Follow-up Sequence
-**Day 3 follow-up:** <new angle>
-**Day 7 follow-up:** <case study / social proof>
-**Day 14 break-up:** <break-up email>
+**Day 3:** <full text>
+**Day 7:** <full text>
+**Day 14:** <break-up text>
 
-## Best Practices for This Segment
-- Send times
-- Personalization tips
-- Length recommendations
+## Best Practices
+- Recommended send time:
+- Personalization level needed:
+- Expected reply rate benchmark:
 ```
 
-### 7. Remind the founder
+### 7. The reminder
 
-"Reminder: The agent can write the email. Only *you* can send it. Pick one variation, personalize it for 5 prospects, and send them today. Come back after you get replies."
+Close with:
+
+"Here are your emails. Pick the best variation, personalize it for 5 prospects in your ICP, and send them today. Don't wait for perfect — perfect doesn't send. If you get replies, I can help you prepare for the call. If you don't, I can help you iterate.
+
+The agent writes. Only you send."
 
 ## Completion criterion
 
-`.sales/outreach/sequence-01.md` exists with 3 email variations, follow-up sequence, and subject lines. Founder has been reminded that sending is their job.
+`.sales/outreach/sequence-01.md` exists with 3 email variations, follow-up sequence text, and subject lines. Research was done — the emails reference real things happening in the ICP's world.

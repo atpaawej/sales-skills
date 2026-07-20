@@ -1,94 +1,166 @@
 ---
 name: icp-definer
-description: Define the Ideal Customer Profile for the product. Reads product context from .sales/context.md and produces a structured ICP document.
+description: Define your Ideal Customer Profile through market research and investigative questioning. Produces a narrow, actionable ICP you can use for outreach today.
 disable-model-invocation: true
 ---
 
 # ICP Definer
 
-Defines who the product is for — specifically, precisely, narrowly enough that the founder can name companies and people to reach out to.
+Your product solves a problem. The question is: **who feels that problem so acutely that they'd pay for a solution right now?**
+
+This skill finds that answer. It does not ask you "who is your customer?" and fill a template. It researches, cross-examines, and narrows until you have a segment specific enough to name actual companies and people.
+
+The file writing is a side effect. The real work is the investigation.
 
 ## Prerequisites
 
-- `.sales/context.md` must exist (run `/init-sales-workspace` first)
+- `.sales/context.md` must exist (run `/init-sales-workspace` first). Use the `_engine` procedures for all workspace I/O.
 
 ## Flow
 
-### 1. Read context
+### 1. Immerse in the product
 
-Read `.sales/context.md`. Understand the product, the problem, and the founder's initial ICP guess.
+Read `.sales/context.md`. Then ask the founder exactly three questions — not to fill a form, but to calibrate your research:
 
-If `.sales/icp.md` already exists, read it too. Ask: "Your current ICP says [summary]. Has anything changed since you last defined it?"
+1. "If your product stopped working tomorrow, which customer would notice first and complain loudest?"
+2. "What did you personally observe or experience that made you build this?"
+3. "Who have you already shown this to, and what did they say?"
 
-### 2. Research and reason
+Do not proceed until you have real answers. Push past "I haven't shown anyone yet" — ask "if you had to show one person today, who would it be?"
 
-Do the following analysis in your response (use web research if useful):
+### 2. Research the market (web search required)
 
-**A. Who has this problem?**
-Based on the product and problem described, who experiences this pain?
-- What role or title?
-- What industry or niche?
-- What company size?
-- What specific situation makes the pain acute?
+Use web search to research the space. You are looking for:
 
-**B. Who gets the most value?**
-This is more important than "who has the problem." A small agency might have the problem, but a 50-person company might feel it 10x more.
-- Who would pay the most to solve this?
-- Who would churn the least?
-- Who would implement fastest?
+**A. Who is talking about this problem?**
+- Search for the problem itself (not your product). Who's complaining about it? On Reddit, Hacker News, Twitter, blogs?
+- What language do they use? Their exact words — not industry jargon, but the raw way real people describe the pain.
+- Who is *already* solving adjacent problems? Not competitors — adjacent players. They validate the market exists.
 
-**C. The narrow starting point**
-For a pre-revenue founder, recommend ONE narrow segment to start with. Not "SaaS companies" but "B2B SaaS companies in the fintech space, 10-50 employees, who have a dedicated engineering team but no dedicated QA."
+**B. What segments exist in this market?**
+- Find 3-5 distinct segments that experience this problem.
+- For each segment, estimate: how many companies/people? How much does the problem cost them? How aware are they of the problem?
 
-**D. Where to find them**
-- What communities are they in? (specific Slack groups, subreddits, forums, newsletters)
-- What events do they attend? (virtual or in-person)
-- What content do they consume?
-- What keywords would they search for?
+**C. Who would pay the most?**
+- Not who needs it most — who would pay the most, fastest, and stay longest.
+- This is usually not the same segment as "who needs it most." A startup needs it. An enterprise will pay.
 
-### 3. Write `.sales/icp.md`
+### 3. Present your findings and grill the founder
 
-Use this structure:
+Present your research like an investigator presenting to a detective:
+
+```
+I researched the market for [product category]. Here's what I found:
+
+The problem [problem description] is real. People are talking about it in [specific places].
+Here are the segments I identified:
+
+1. [Segment A] — [description, size, pain level, willingness to pay]
+   Evidence: [specific search result, quote, data point]
+
+2. [Segment B] — [description, size, pain level, willingness to pay]
+   Evidence: [specific search result, quote, data point]
+
+3. [Segment C] — [description, size, pain level, willingness to pay]
+   Evidence: [specific search result, quote, data point]
+```
+
+Then grill:
+
+- "Segment A looks promising because [reason]. But you told me [founder's context]. Does that align or conflict?"
+- "You said your ICP is [founder's guess]. My research suggests [different segment]. Help me understand the gap."
+- "If you had to pick ONE of these segments and ignore the rest for 30 days, which one makes you feel most confident you can get a 'yes'?"
+- "Name 5 companies in this segment. If you can't, it's still too broad."
+
+Your tone: curious but relentless. If the founder says "I don't know," don't accept it — rephrase, dig deeper, push. The goal is specificity.
+
+### 4. The narrowing loop
+
+For each round of narrowing:
+1. Propose a refined segment with evidence
+2. Ask: "Does this feel right? Too narrow? Too broad?"
+3. If too broad: push harder. "Segment of one" is the ultimate target — one specific person at one specific company.
+4. If too narrow: expand slightly and test again.
+5. End when: the founder can name 3-5 real companies/people AND feels confident reaching out this week.
+
+Document the narrowing decisions:
+```
+Round 1: Started with [broad segment]
+Round 2: Narrowed to [narrower] because [reason]
+Round 3: Refined to [final] because [reason]
+```
+
+### 5. Research the final segment in depth
+
+Once the segment is locked, research it specifically:
+
+- Where do these people hang out online? (specific subreddits, Slack communities, newsletters, conferences)
+- What keywords do they search for when the problem becomes acute?
+- What solutions do they currently use or try?
+- Who are the influencers/thought leaders they follow?
+- What would make them say "tell me more" in an outreach message?
+
+### 6. Write `.sales/icp.md`
+
+Write the final ICP using `_engine` write procedures:
 
 ```markdown
-# Ideal Customer Profile: <Segment Name>
+# Ideal Customer Profile: <Final Segment>
 
 Last updated: <date>
 
-## Primary ICP (Start Here)
-- **Role/Title:**
-- **Company size:**
-- **Industry:**
-- **Specific situation** (the trigger that makes them need this now):
+## The Segment
+- **Who:** [specific role, title, persona — e.g. "Head of Engineering at B2B SaaS companies, 20-50 employees"]
+- **The trigger:** [what makes the problem acute enough to act — e.g. "when they miss a compliance deadline and lose a customer"]
+- **The alternative:** [what they do today instead of buying — e.g. "manual spreadsheet tracking, one engineer spends 10 hours/week"]
 
 ## Why This Segment
-- **Problem they feel:** (their words, not your features)
-- **Value they'd get:** (quantified if possible)
-- **Why they'd pay:** (urgency, budget, ROI clarity)
+- **Problem in their words:** [direct quotes from research]
+- **Quantified value:** [what the solution is worth to them in time/money]
+- **Why they'd pay:** [urgency, budget availability, ROI clarity]
+
+## Market Evidence
+- **Sources consulted:** [search queries, sites, communities researched]
+- **Validation signals:** [posts, complaints, questions that confirm the pain exists]
 
 ## Where To Find Them
-- **Communities:**
-- **Content they consume:**
-- **Search terms they use:**
+- **Communities:** [specific — not "LinkedIn" but "r/devops, Hacker News threads about compliance, the Rands Leadership Slack"]
+- **Keywords they search:** [the exact search terms they use when the problem hurts]
+- **Influencers they follow:** [specific people, newsletters, podcasts]
 
 ## Outreach Angle
-- **The hook:** (one sentence that would grab their attention)
-- **The pain they'd admit to:** (what they'd say in a conversation)
+- **The hook:** [one sentence that would stop them from scrolling]
+- **Their admission:** [what they'd say if they were honest about the pain]
 
-## Secondary ICPs (Future)
-- <segment 2>
-- <segment 3>
+## Narrowing History
+<record of rounds: started broad, narrowed by X, refined by Y>
+
+## Next Steps
+- [3-5 specific companies/people to reach out to this week]
 ```
 
-### 4. Validate with the founder
+### 7. Deliver the verdict
 
-Show the ICP and ask:
-- "Does this feel right? What's inaccurate?"
-- "Do you know 5 companies that match this profile?"
-- "Would you be comfortable reaching out to someone in this segment today?"
+After writing, summarize:
 
-If the founder disagrees, refine. Iterate until they say "yes, that's my target."
+```
+Your ICP is: [one-sentence summary]
+
+This means:
+- You should reach out to [company/people list]
+- You should avoid [tempting but wrong segments]
+- Your outreach hook should be: [specific hook]
+
+3 companies you can contact TODAY:
+1. [Company] — [why they fit, who to contact]
+2. [Company] — [why they fit, who to contact]
+3. [Company] — [why they fit, who to contact]
+```
+
+### 8. Final push
+
+"Do you commit to reaching out to at least 3 people in this segment this week? If not, we need to refine until you feel that confidence. If yes, run `/cold-email-writer` next."
 
 ## Completion criterion
 
-`.sales/icp.md` is written and the founder has confirmed it's accurate enough to start outreach. They know 3-5 companies or people who match the profile.
+`.sales/icp.md` exists with a segment specific enough that the founder can name 3-5 real companies/people. Web research was done — the findings are cited and traceable. The founder has confirmed confidence in the segment.

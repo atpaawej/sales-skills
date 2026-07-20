@@ -1,72 +1,67 @@
 ---
 name: follow-up-sequencer
-description: Design a multi-touch follow-up sequence for prospects who haven't replied. Builds persistence without being annoying.
+description: Design a multi-touch follow-up sequence. 80% of sales require 5+ touches, but 44% of salespeople quit after one.
 disable-model-invocation: true
 ---
 
 # Follow-Up Sequencer
 
-Designs a complete follow-up sequence. Most sales happen after the 5th touch; most salespeople quit after the 1st. This skill makes persistence systematic.
+Most sales happen after the 5th touch. Most salespeople quit after the 1st. This skill builds the persistence strategy that becomes your competitive advantage.
+
+Not "send more emails" — **send the right messages at the right time on the right channel.**
+
+Use `_engine` procedures for all workspace I/O.
 
 ## Prerequisites
 
-- `.sales/context.md` exists
-- `.sales/outreach/sequence-01.md` or comparable initial outreach exists
+- `.sales/context.md` exists. Initial outreach was written (run `/cold-email-writer` or `/linkedin-dm-writer` first).
 
 ## Flow
 
-### 1. Read workspace and ask
+### 1. Read workspace and calibrate
 
-Read `.sales/context.md`. Ask the founder:
-- "What channel was the initial outreach? (email, LinkedIn, DM, etc.)"
-- "What was the initial message about?"
-- "How many prospects are you following up with?" (batch size)
-- "What other channels can you reach them on?" (LinkedIn + email = higher conversion)
-- "Do you have any content (case study, blog post, tweet) you can share as a follow-up touch?"
+Read `.sales/context.md` using `_engine` procedures. Read `.sales/outreach/sequence-01.md` if it exists — build on the existing emails rather than starting from scratch.
 
-### 2. Build the sequence
+Ask:
+- "What channel was the initial outreach on? (email, LinkedIn?)"
+- "What about your prospects? Are they busy execs? Indie founders? Developers?"
+- "Do you have any content you can share as follow-up? (blog posts, case studies, tweets, frameworks?)"
+- "Can you reach them on another channel? (email + LinkedIn > either alone)"
 
-Use the course's recommended rhythm:
+### 2. Design the touch sequence
 
-| Touch | Timing | Content | Channel |
-|---|---|---|---|
-| 1 | Day 0 | Initial message | Primary channel |
-| 2 | Day 3 | New angle or value add ("wanted to share this resource") | Same channel |
-| 3 | Day 7 | Social proof (case study, testimonial, customer story) | Same or cross-channel |
-| 4 | Day 14 | Break-up email ("I'll stop following up, but door is open") | Same channel |
-| 5 | Day 30-45 | Re-engagement ("saw [trigger] and thought of you") | Cross-channel |
+Build a 5-touch sequence with actual message text:
 
-### 3. Generate each touch
+**Touch 1 (Day 0): Initial message**
+Already written by `/cold-email-writer` or `/linkedin-dm-writer`.
 
-For each touch number, write the actual message.
-
-**Day 3 Follow-up**
+**Touch 2 (Day 3): New angle / value add**
 ```
-Subject: Re: [Original subject]
+Subject: Re: [original subject]
 
 Hi [Name],
 
 Following up on my last email — I know you're busy.
 
-I wanted to share [specific resource: blog post, case study, framework] that might be useful regardless of whether our product fits.
+I wanted to share [specific resource] that might be useful regardless of fit.
 
-[1-2 sentence description of the resource, with link]
+[1-2 sentences on what the resource is and why it's relevant to their situation]
 
-No need to reply if this isn't relevant right now.
+No need to reply if this isn't the right time.
 
 Best,
 [Your name]
 ```
 
-**Day 7 Social Proof**
+**Touch 3 (Day 7): Social proof**
 ```
-Subject: Re: [Original subject]
+Subject: Re: [original subject]
 
 Hi [Name],
 
-Thought you might find this interesting — [similar company] was dealing with [same problem] and they [specific result] after implementing [solution].
+Thought this might interest you — [similar company/person] was dealing with [same problem] and they [specific result] after [action].
 
-[1-2 sentence story].
+[1-2 sentence story linking their situation to the outcome]
 
 Worth a quick chat to see if you'd see similar results?
 
@@ -74,42 +69,55 @@ Best,
 [Your name]
 ```
 
-**Day 14 Break-up**
+**Touch 4 (Day 14): Break-up**
 ```
-Subject: Re: [Original subject]
+Subject: Re: [original subject]
 
 Hi [Name],
 
-I've sent a few emails and haven't heard back — no worries at all.
+I've sent a few emails and haven't heard back — completely understand.
 
-I'll stop following up for now. If [specific problem] ever becomes a priority, I'd be happy to help. No catch, just wanted you to know the door is open.
+I'll stop following up for now. But if [specific problem] ever becomes a priority, the door is open. No catch, just wanted you to know.
 
 Best,
 [Your name]
 ```
 
-**Day 30-45 Re-engagement**
+**Touch 5 (Day 30-45): Re-engagement**
+Trigger-based: reference something new that happened.
 ```
-Subject: [trigger event]
+Subject: [trigger event — funding, product launch, role change, post about pain]
 
 Hi [Name],
 
-Saw that [trigger event — new funding, product launch, role change, post about pain]. Made me think of our conversation earlier.
+Saw that [specific trigger event]. Made me think of our conversation earlier — might be worth revisiting if the timing is better now.
 
-If the timing is better now, I'd be happy to pick it up where we left off.
+Let me know if you'd like to pick it up where we left off.
 
 Best,
 [Your name]
 ```
+
+### 3. Cross-channel strategy
+
+If the founder has access to multiple channels:
+
+| Touch | Channel | Content |
+|---|---|---|
+| 1 | Email | Initial message |
+| 2 | Email | Resource share |
+| 3 | LinkedIn | Like/comment on their post, then DM |
+| 4 | Email | Break-up |
+| 5 | Email or LinkedIn | Re-engagement based on trigger |
 
 ### 4. Write `.sales/outreach/templates/follow-up-sequence.md`
 
-Save the complete sequence with timing and channel recommendations.
+Use `_engine` write procedures.
 
-### 5. Reminder
+### 5. The rule
 
-"44% of salespeople give up after one follow-up. 80% of sales require 5+ touches. This sequence is your competitive advantage — the only way it fails is if you don't send it."
+"44% of salespeople give up after one follow-up. 80% of sales require 5+ touches. This sequence is a competitive advantage. The only way it fails: if you don't send it."
 
 ## Completion criterion
 
-`.sales/outreach/templates/follow-up-sequence.md` exists with 5 touches. Founder understands the persistence strategy.
+`.sales/outreach/templates/follow-up-sequence.md` exists with 5 complete touches (text written, not placeholders). Founder knows when to send each one.

@@ -1,67 +1,101 @@
 ---
 name: pricing-advisor
-description: Generate pricing options and strategy. Based on value-based pricing, anchoring, decoy effect, and Hormozi's grand slam offer framework.
+description: Design a pricing strategy using value-based principles, psychology, and market research. Produces tiered pricing with anchoring and positioning.
 disable-model-invocation: true
 ---
 
 # Pricing Advisor
 
-Helps the founder design a pricing strategy. Covers value-based pricing, tier structure, anchoring, and the psychology behind price perception.
+Technical founders underprice. They calculate their costs, add a margin, and set a number. That's cost-plus pricing — and it ignores the most important variable: **what is the problem worth to the customer?**
+
+This skill doesn't just help you pick a number. It helps you understand the value you deliver, structure tiers that make the middle one feel obvious, and handle the "it's too expensive" objection before it comes.
+
+Use `_engine` procedures for all workspace I/O.
 
 ## Prerequisites
 
-- `.sales/context.md` exists
-- `.sales/value-proposition.md` exists
+- `.sales/context.md`, `.sales/value-proposition.md`, and `.sales/competitors.md` exist.
 
 ## Flow
 
-### 1. Read workspace
+### 1. Read workspace and research pricing benchmarks
 
-Read `.sales/context.md` and `.sales/value-proposition.md`.
+Read `.sales/context.md`, `.sales/value-proposition.md`, `.sales/competitors.md` using `_engine` procedures.
 
-### 2. Calculate the value
+Then research:
 
-Ask the founder these questions to establish the value ceiling:
+- What do competitors charge? (from competitor-scout output, plus fresh search)
+- What is the range in this category? (lowest to highest alternatives)
+- What pricing models dominate in this space? (monthly, annual, usage-based, flat)
 
-**Quantified value questions:**
-- "What problem does your product solve, and what does that problem cost the customer in time/money?"
-- "If your product delivers its promised outcome, how much is that worth to the customer per month?"
-- "What's the cheapest alternative? (manual process, competitor, etc.)"
-- "What's the most expensive alternative?"
-- "Who gets the most value from your product? (this determines the ceiling)"
+### 2. Calculate the value ceiling
 
-### 3. Build the tier structure
+Ask the founder — push for real numbers:
 
-Based on the course's pricing psychology:
+- "What does this problem cost your customer? In time, money, missed revenue, or risk?"
+- "If your product works perfectly, how much does the customer save or earn per month?"
+- "What's the cheapest way to solve this without your product? (manual, competitor, workaround)"
+- "If your price was 10x higher, which customers would still buy? (that's your real value ceiling)"
 
-**Three tiers:**
-| Tier | Position | Price | Target |
-|---|---|---|---|
-| Entry | Basic / Starter | Lower | Price-sensitive, small customers |
-| Recommended | Most Popular | Middle (where you want them) | Most customers — the default |
-| Premium | Enterprise / Pro | High (anchors the others) | Power users — makes middle look cheap |
+The formula:
 
-**The Decoy Effect:**
-If it makes sense, add a decoy tier that's clearly worse than Recommended at a similar price. This makes Recommended feel like the smart choice.
+```
+Customer's cost of problem: $X/month
+Your solution's impact: Y% of problem eliminated
+Value delivered: $X * Y% = $Z/month
+Your capture (10-30%): $Z * 20% = recommended price
+```
 
-**Anchoring:**
-Always present Premium first. The first price the prospect sees anchors their entire perception.
+### 3. Design the tier structure
 
-### 4. Check against pricing principles
+Based on the value ceiling and competitive research, build three tiers:
 
-From the course:
+**Premium** (anchor — shown first):
+- Price: near the value ceiling
+- Includes everything
+- Makes the middle tier feel reasonable
+
+**Recommended** (where you want them):
+- Price: 40-60% of premium
+- The best value for most customers
+- Mark as "Most Popular" or "Recommended"
+
+**Entry** (for price-sensitive):
+- Price: 20-30% of premium
+- Limited features or usage
+- Gets them in the door
+
+**Optional: Decoy tier**
+If it helps, add a tier between Entry and Recommended that's clearly worse than Recommended at a similar price. This makes Recommended feel like a steal.
+
+### 4. Score against pricing psychology
+
+For each tier:
 
 | Principle | Applied? |
 |---|---|
-| Value-based, not cost-plus | Price = fraction of value delivered, not cost to build |
-| Anchoring | Premium price anchors the conversation |
-| Decoy if needed | Middle tier looks better next to a decoy |
+| Value-based (not cost-plus) | Price is fraction of value, not cost to build |
+| Anchoring | Premium shown first, sets the frame |
+| Decoy effect | Middle tier looks best next to the decoy (if used) |
 | Charm pricing ($.99) | For consumer; round numbers for B2B |
 | Grand slam offer | Clear transformation + guarantee + bonuses |
-| No discounts without reason | Annual prepay or early adopter only |
-| Raise every 6 months | If nobody complains, you're too cheap |
+| Discount discipline | Annual prepay 15-20% off, early adopter pricing, no other discounts |
 
-### 5. Write `.sales/pricing.md`
+### 5. Practice the "too expensive" response
+
+Write a specific script for the founder:
+
+```
+When prospect says "it's too expensive":
+1. Don't defend the price. Don't discount.
+2. Say: "I hear you. Is it the price itself, or is the value not clear enough yet?"
+3. If they say "the value isn't clear": walk through the ROI calculation again.
+4. If they say "the price is too high": "What would make the full price worth it to you?"
+```
+
+### 6. Write `.sales/pricing.md`
+
+Use `_engine` write procedures:
 
 ```markdown
 # Pricing Strategy: <Product Name>
@@ -71,41 +105,40 @@ Last updated: <date>
 ## Value Analysis
 - Problem cost to customer: $X/month
 - Value delivered: $X/month
-- Recommended value capture: 10-30% → $X/month
+- Recommended capture rate: X%
+- Recommended price: $X/month
 
 ## Tier Structure
+### Premium ($X/mo) — <Name>
+<what they get>
+<psychological rationale>
 
-### Premium (<Name>) — $X/mo
-<What they get>
-<Why this price>
+### Recommended ($X/mo) — <Name>
+<what they get>
+<psychological rationale>
 
-### Recommended (<Name>) — $X/mo
-<What they get>
-<Why this price>
+### Entry ($X/mo) — <Name>
+<what they get>
+<psychological rationale>
 
-### Entry (<Name>) — $X/mo
-<What they get>
-<Why this price>
+## Psychology Applied
+<anchoring, decoy, charm — specific tactics>
 
-## Anchoring Strategy
-<How to present pricing on the page / in conversations>
+## "Too Expensive" Script
+<full response script>
 
 ## Discount Policy
 - Annual prepay: 15-20% off
-- Founder pricing for first X customers: Y% off
-- No other discounts
-
-## Pricing Psychology Applied
-<Specific anchoring, decoy, or charm tactics used>
+- Founder pricing (first X customers): Y% off
+- No other discounts — ever
 ```
 
-### 6. Validate with the founder
+### 7. Final check
 
-- "Does this feel fair to you?"
-- "Would you pay this if you were your customer?"
-- "What's the #1 objection you expect on price?"
-- Practice the response to "it's too expensive" using the pricing page as context.
+- "If your ICP doesn't flinch at this price, it's too low."
+- "If you're scared to say this number, it's probably right."
+- "Would you pay this if you were your customer? If no, fix the value, not the price."
 
 ## Completion criterion
 
-`.sales/pricing.md` exists with tiered pricing, anchoring strategy, and discount policy. Founder has practiced the "too expensive" objection once.
+`.sales/pricing.md` exists with tiered pricing, value analysis, anchoring strategy, discount policy, and a "too expensive" script. Founder has said the price out loud and confirmed they can defend it.
