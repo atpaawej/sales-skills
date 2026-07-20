@@ -1,27 +1,38 @@
 ---
 name: init-sales-workspace
-description: Initialize a sales workspace for a product — creates the .sales/ directory with scaffolded files. Run this first, once per product.
+description: Create a .sales/ workspace with scaffolded files. Run once per product, at the root of your product folder.
 disable-model-invocation: true
 ---
 
 # Initialize Sales Workspace
 
-Creates a `.sales/` workspace in the current directory — the persistent data layer that every sales skill reads from and writes to. Run this once per product, at the root of the founder's working folder.
+Creates `.sales/` in the current directory — the persistent store every sales skill reads from and writes to. Run this once per product.
+
+---
 
 ## Flow
 
-### 1. Interview the founder
+### 1. Check if `.sales/` already exists
 
-Ask every question below. Capture the answers in a structured document you'll write to `.sales/context.md`.
+If `.sales/context.md` exists, tell the founder:
+> "Your workspace is already initialized. Run `/sales-navigator` to see your status."
+
+If `.sales/` exists but `context.md` doesn't, ask the founder to resolve or delete `.sales/` so you can start fresh.
+
+If neither exists, proceed.
+
+### 2. Collect what you need
+
+Work through every question below. **Before asking any question, check the workspace for an existing answer** — if `context.md` already has it, skip the question. Only ask what's missing.
 
 **About the product:**
-- What is the product called? (name)
-- What does it do? (one sentence)
-- Who did you build it for? (initial guess — raw, unrefined)
-- What problem does it solve? (the pain, not the feature)
-- How is it different from alternatives? (your gut feeling)
+- What is the product called?
+- What does it do? One sentence.
+- Who did you build it for? Initial guess, raw and unrefined.
+- What problem does it solve? The pain, not the feature.
+- How is it different from alternatives? The founder's gut feeling.
 - What format is it? (SaaS, API, digital product, physical, service, etc.)
-- Monthly price you're thinking? (rough range)
+- Rough monthly price range?
 
 **About the founder:**
 - What's your background? (developer, designer, domain expert?)
@@ -31,35 +42,36 @@ Ask every question below. Capture the answers in a structured document you'll wr
 
 **About the market (current state):**
 - Do you have any customers yet? (free trials, beta users, paying?)
-- Have you tried selling before? (what happened?)
+- Have you tried selling before? What happened?
 - Who do you *think* would pay for this?
 
-### 2. Create the workspace
+Ask one question at a time. Wait for the answer before moving to the next.
 
-Create the following file structure:
+### 3. Create the workspace
+
+Create this directory structure:
 
 ```
 .sales/
-├── context.md              # The interview answers, always kept current
-├── icp.md                  # Ideal Customer Profile (created by /icp-definer)
-├── value-proposition.md    # Positioning & messaging (created by /value-prop-crafter)
-├── competitors.md          # Competitive landscape (created by /competitor-scout)
-├── pricing.md              # Pricing tiers & strategy (created by /pricing-advisor)
+├── context.md
+├── icp.md
+├── value-proposition.md
+├── competitors.md
+├── pricing.md
 ├── outreach/
-│   ├── sequence-01.md      # Active outreach sequence
-│   ├── results.md          # Track replies, conversions
-│   └── templates/          # Generated email/DM templates
-├── pipeline.md             # Deal pipeline / prospect tracker
-├── content-calendar.md     # Content plan (created by /content-planner)
-├── calls/                  # Call preps and notes
-└── workspace-status.md     # Auto-generated status summary
+│   ├── sequence-01.md
+│   ├── results.md
+│   └── templates/
+├── pipeline.md
+├── content-calendar.md
+├── calls/
+├── workspace-status.md
+└── voice-examples.md
 ```
 
-Each file gets a header with `# Title` and `Last updated: <date>`.
+### 4. Write `context.md`
 
-### 3. Write `context.md`
-
-Write the full interview into `.sales/context.md` in a clean format. Include a section at the top:
+Write the full interview into `.sales/context.md`. Use this format:
 
 ```markdown
 # Sales Context: <Product Name>
@@ -67,38 +79,38 @@ Write the full interview into `.sales/context.md` in a clean format. Include a s
 Last updated: <date>
 
 ## Product
-- Name: 
-- One-liner: 
-- Format: 
-- Rough price: 
+- Name:
+- One-liner:
+- Format:
+- Rough price:
 
 ## Founder
-- Background: 
-- Comfort channels: 
-- Weekly hours available: 
+- Background:
+- Comfort channels:
+- Weekly hours available:
 
 ## Current State
-- Existing customers?: 
-- Previous sales attempts?: 
-- Initial ICP guess: 
+- Existing customers?:
+- Previous sales attempts?:
+- Initial ICP guess:
 
 ## Raw Interview
 <full Q&A from the interview>
 ```
 
-### 4. Summary
-
-Print a summary:
+### 5. Summary
 
 ```
 ✅ Sales workspace initialized at .sales/
 
 Next steps:
-  1. Run /icp-definer  — define your Ideal Customer Profile
+  1. Run /icp-definer — find your Ideal Customer Profile
   2. Run /value-prop-crafter — craft your value proposition
   3. Run /cold-email-writer — draft your first outreach
 ```
 
+---
+
 ## Completion criterion
 
-The `.sales/` directory exists with at least a populated `context.md`. The founder has seen their summary and knows what to run next.
+`.sales/context.md` exists with populated product, founder, and market state. The founder knows what to run next.
