@@ -1,6 +1,6 @@
 ---
 name: content-planner
-description: Plan a 30-day content calendar with drafted posts. Uses the ICP's world and your value proposition to create content that attracts the right people.
+description: Plan a 30-day content calendar with drafted posts. Matched to your available hours and authentic voice — not a vague editorial calendar.
 disable-model-invocation: true
 ---
 
@@ -10,45 +10,56 @@ Content marketing works — but only if you're consistent. This skill builds a 3
 
 The output is not a vague editorial calendar. It's actual drafted posts for the first week.
 
-Use `_engine` procedures for all workspace I/O.
+---
 
 ## Prerequisites
 
-- `.sales/context.md`, `.sales/icp.md`, `.sales/value-proposition.md` exist.
+`.sales/context.md`, `.sales/icp.md`, and `.sales/value-proposition.md` must exist.
+
+---
 
 ## Flow
 
-### 1. Read workspace and research
+### 1. Read workspace
 
-Read `.sales/context.md`, `.sales/icp.md`, `.sales/value-proposition.md` using `_engine` procedures.
+Read `.sales/context.md`, `.sales/icp.md`, `.sales/value-proposition.md`. Check if `.sales/content-calendar.md` exists — if so, offer to extend the existing calendar or start a new month.
 
-Then research:
-- What content is working in your ICP's space? (search for popular posts, threads, articles)
-- What questions are your ICP asking? (Reddit, Quora, Hacker News, Twitter)
+Read `.sales/voice-examples.md` if it exists — match the founder's natural tone.
+
+### 2. Research what's working
+
+Do not ask the founder anything yet. Research:
+
+- What content is working in the ICP's space? Search for popular posts, threads, articles
+- What questions is your ICP asking? Reddit, Quora, HN, Twitter/X, LinkedIn discussions
 - What do competitors post about? What gets engagement?
+- What format is trending? (short posts, threads, videos, newsletters, podcasts)
 
-### 2. Find founder's authentic voice
+### 3. Find the founder's authentic voice
 
-Ask:
+Ask — and **save the answers to `.sales/voice-examples.md`** so you never ask again:
+
 - "What channels do you want to post on?"
 - "How many hours per week can you COMMIT — not hope for?"
 - "What topics could you talk about for 30 minutes without preparing?"
 - "Do you prefer writing long-form (essays, threads) or short-form (tweets, posts)?"
 - "What's a hot take you have about your industry that might be unpopular?"
-- "Who's a creator you admire in any space? What do you like about their style?"
+- "Who's a creator you admire? What do you like about their style?"
 
-### 3. Define 3-4 content pillars
+If `.sales/voice-examples.md` already has this data, skip the questions and use what's stored.
 
-These are topics you can talk about repeatedly without running dry:
+### 4. Define 3-4 content pillars
+
+Topics the founder can talk about repeatedly without running dry:
 
 | Pillar | Description | Example angle |
 |---|---|---|
-| 1. The problem | Why it matters, war stories, cost of ignoring it | "Why your team's manual process is costing you $10k/month" |
-| 2. The solution philosophy | How you think about solving it (not product pitches) | "The right way to think about [problem]" |
+| 1. The problem | Why it matters, war stories, cost of ignoring it | "Why your manual process costs $10k/month" |
+| 2. Solution philosophy | How you think about solving it (not product pitches) | "The right way to think about [problem]" |
 | 3. Founder journey | Building in public, lessons, vulnerability | "I spent 6 months building a feature nobody used" |
 | 4. Industry insights | Trends, news, your takes | "Why [trend] matters for [ICP]" |
 
-### 4. Build the calendar based on real hours
+### 5. Build the calendar based on real hours
 
 **2 hrs/week**
 ```
@@ -64,9 +75,11 @@ Same as 2hr + 1 deep thread per week (Pillar 4)
 **10+ hrs/week**
 Daily posts + 2 threads + 1 newsletter
 
-### 5. Draft the first week's posts
+If the founder's commitment seems unrealistic, push back: "You said 10 hrs/week but you're building a product and have a day job. Let's start at 5 hrs/week. Consistency beats intensity."
 
-Write the full content for the first 3 posts:
+### 6. Draft the first week's posts
+
+Write full content for the first 3 posts:
 
 ```
 ## Post 1
@@ -78,20 +91,15 @@ Write the full content for the first 3 posts:
 
 ## Post 2
 ...
-
-## Post 3
-...
 ```
 
 Each post must:
 - Start with a hook that stops the scroll
 - Speak to the ICP's specific situation
 - Lead with an opinion, a story, or a data point — never a generic observation
-- End with either a CTA or a thought-provoking question
+- End with a CTA or a thought-provoking question
 
-### 6. Write `.sales/content-calendar.md`
-
-Use `_engine` write procedures:
+### 7. Write `.sales/content-calendar.md`
 
 ```markdown
 # Content Calendar: <Product Name>
@@ -112,14 +120,8 @@ Last updated: <date>
 - Wed: [Post title] — [Pillar X]
 - Fri: [Post title] — [Pillar X]
 
-### Week 2
-...
-
-### Week 3
-...
-
-### Week 4
-...
+### Week 2-4
+<planned but not drafted>
 
 ## First Week Drafts
 <full text of post 1>
@@ -130,13 +132,21 @@ Last updated: <date>
 <extra ideas for when inspiration runs dry>
 ```
 
-### 7. Validate
+### 8. Validate
 
 - "Is the volume realistic for your life right now?"
-- "If you could only post one thing this week, which would be most valuable to your ICP?"
+- "If you could only post one thing this week, which would be most valuable?"
 - "Does this feel like content YOU would write, or content you're forcing?"
 
 If the volume feels too high, cut it in half. Consistency beats intensity.
+
+### 9. Close
+
+> "Your content plan is ready. Post the first piece **[this week]** — that's the only deadline that matters. The rest of the plan is a guide, not a contract.
+>
+> Run `/landing-page-drafter` to align your landing page messaging with this content, or `/outreach` to start reaching out directly."
+
+---
 
 ## Completion criterion
 
