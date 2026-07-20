@@ -16,22 +16,20 @@ This skills framework turns the course's knowledge into **repeatable, agent-exec
 
 ## Installation
 
-Install all skills with one command:
-
 ```bash
-npx skills add atpaawej/sales-skills
+npx skills add atpaawej/sales-skills --all
 ```
 
-The CLI auto-detects your agents (Claude Code, Codex, Cursor, Cline, and 70+ more) and prompts you to pick which skills to install.
+The CLI auto-detects your agent (Claude Code, Codex, Cursor, Cline, and 70+ more) and prompts you to pick which skills to install.
 
 ### Options
 
 ```bash
-# Install to all agents without prompts
+# Install to all agents
 npx skills add atpaawej/sales-skills --all
 
 # Install only specific skills
-npx skills add atpaawej/sales-skills --skill icp-definer --skill cold-email-writer
+npx skills add atpaawej/sales-skills --skill icp-definer --skill outreach
 
 # Install globally (available in every project)
 npx skills add atpaawej/sales-skills -g
@@ -74,20 +72,24 @@ This creates a `.sales/` workspace in your current directory. Then run `/sales-n
             └──────────────┼──────────────┘
                            ▼
             ┌──────────────────────────────┐
-            │       Outreach Skills        │
-            │  /cold-email-writer          │
-            │  /linkedin-dm-writer         │
-            │  /follow-up-sequencer        │
-            │  /call-prepper               │
-            │  /objection-roleplay         │
+            │         /outreach hub         │
+            │  First touch · Follow-ups    │
+            │  Call prep                   │
             └──────────────────────────────┘
                            │
-            ┌──────────────┴──────────────┐
-            ▼                             ▼
-   ┌──────────────┐              ┌──────────────┐
-   │/pricing-     │              │/landing-page │
-   │advisor       │              │-drafter      │
-   └──────────────┘              └──────────────┘
+            ┌──────────────┼──────────────┐
+            ▼              ▼              ▼
+   ┌─────────────┐ ┌──────────────┐ ┌──────────────┐
+   │/pricing-    │ │/landing-page │ │/objection-   │
+   │advisor      │ │-drafter      │ │roleplay      │
+   └─────────────┘ └──────────────┘ └──────────────┘
+                           │
+                    ┌──────┴──────┐
+                    ▼             ▼
+           ┌─────────────┐ ┌──────────────┐
+           │/content-    │ │/outreach-    │
+           │planner      │ │auditor       │
+           └─────────────┘ └──────────────┘
 ```
 
 Every skill reads from and writes to a `.sales/` directory in your project folder. Data persists. Sessions resume. Skills build on each other.
@@ -97,25 +99,22 @@ Every skill reads from and writes to a `.sales/` directory in your project folde
 ### 🧭 Router
 | Skill | What it does |
 |---|---|
-| `/sales-navigator` | Reads your workspace, shows your status, and recommends what to do next |
+| `/sales-navigator` | Reads your workspace, shows your status, recommends what to do next |
 
 ### 🏗️ Foundation
 | Skill | What it does |
 |---|---|
 | `/init-sales-workspace` | Creates `.sales/` with scaffolded files — run once per product |
-| `/icp-definer` | Defines your Ideal Customer Profile with research and validation |
+| `/icp-definer` | Defines your ICP with deep research, evidence, and peer-model pushback |
 | `/value-prop-crafter` | Positions your product using April Dunford's framework |
-| `/competitor-scout` | Researches competitors and finds your differentiator |
-| `/pricing-advisor` | Designs tiered pricing with anchoring, decoys, and psychology |
+| `/competitor-scout` | Researches competitors and finds your real differentiator |
+| `/pricing-advisor` | Designs value-based pricing with anchoring and psychology |
 
-### 📧 Outreach
+### 📧 Outreach Hub
 | Skill | What it does |
 |---|---|
-| `/cold-email-writer` | Generates 4-sentence cold emails with follow-ups |
-| `/linkedin-dm-writer` | Writes connection requests + gate-question DMs |
-| `/follow-up-sequencer` | Builds 5-touch follow-up sequences |
-| `/call-prepper` | Researches prospects, writes call flows, preps objections |
-| `/objection-roleplay` | Interactive roleplay — agent plays prospect, you practice |
+| `/outreach` | One hub for cold emails, LinkedIn DMs, follow-up sequences, and call prep |
+| `/objection-roleplay` | Interactive practice — agent plays skeptical prospect |
 
 ### 📝 Content
 | Skill | What it does |
@@ -147,13 +146,13 @@ cd my-product-sales
 # 5. Define who to sell to
 /icp-definer
 
-# 6. Write your first cold emails
-/cold-email-writer
+# 6. Write your first outreach
+/outreach
 ```
 
 ## The Workspace Model
 
-Skills are stateless in the session but stateful through the workspace.
+Skills are stateless in the session but stateful through the workspace. Data persists between runs.
 
 ```
 my-product-sales/
@@ -166,21 +165,36 @@ my-product-sales/
     ├── outreach/               # Outreach sequences and results
     ├── pipeline.md             # Deal tracker
     ├── content-calendar.md     # Content plan
-    └── calls/                  # Call preps and notes
+    ├── calls/                  # Call preps and notes
+    ├── workspace-status.md     # Auto-generated status
+    └── voice-examples.md       # Founder's authentic voice samples
 ```
 
-## Principles
+## Design Principles
 
-- **One skill, one job.** Each skill does exactly one thing well.
-- **Agent writes, founder sends.** No illusion of progress. The agent prepares; the founder executes.
+Every skill follows the same core interaction:
+
+1. **Research first** — no questions to the founder until the skill has done its own work
+2. **Present with evidence** — here's what I found, here's why, here's my recommendation
+3. **Founder reacts** — "that's right," "that's wrong but here's what's closer to the truth," or "I disagree"
+4. **Peer-model pushback** — if the founder's instinct is counterproductive (e.g., targeting everyone), the skill pushes back with psychology and evidence
+5. **Persistence** — before asking the founder anything, check the workspace. If the answer already exists, use it. If not, ask and save it.
+
+Three core rules:
+- **Agent writes, founder sends.** No skill ever automates sending. Every skill ends with a handoff to human action.
 - **Workspace as source of truth.** Skills compose through shared files, not session memory.
-- **Start with who, not how.** `/icp-definer` comes first because everything else depends on knowing who you're selling to.
+- **MCP when needed, web search otherwise.** Skills use browser tools for specific tasks (visiting landing pages, checking competitor sites); web search is the daily driver.
 
 ## Built from
 
 - [Sales for Builders](https://salesforbuilders.aawej.in/) — free sales course for technical founders
-- The [skills framework](https://github.com/mattpocock/skills) pattern by Matt Pocock — composable, predictable, repeatable
+- [Writing Great Skills](https://github.com/aawej/writing-great-skills) — principles for designing predictable agent behaviors
+- The [skills framework](https://github.com/mattpocock/skills) pattern by Matt Pocock
 - [skills.sh](https://skills.sh) — the open agent skills CLI by Vercel Labs
+
+## Out of Scope
+
+This framework has intentional boundaries. See [out of scope](./.outofscope/README.md) for details — skills will not send messages, replace a CRM, integrate with platforms, or handle enterprise sales cycles.
 
 ## License
 
